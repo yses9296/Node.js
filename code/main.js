@@ -41,7 +41,7 @@ var app = http.createServer(function(request,response){
     }
     else {
       response.writeHead(404);
-      response.end(template);
+      response.end('Not Found');
     }
 
     // if(_url == '/'){
