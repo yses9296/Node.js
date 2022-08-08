@@ -29,11 +29,10 @@ var app = http.createServer(function(request,response){
           var list = '<ul>';
           var i = 0;
           while( i < filelist.length ){
-            list = list + `<li> ${filelist[i]} </li>`
+            list = list + `<li><a href="/?id=${filelist[i]}"> ${filelist[i]} </li>`
             i++;
           }
           list = list + '</ul>';
-          console.log(list);
 
           var template = `
             <!doctype html>
