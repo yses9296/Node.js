@@ -29,7 +29,7 @@ var app = http.createServer(function(request,response){
           var list = '<ul>';
           var i = 0;
           while( i < filelist.length ){
-            list = list + `<li><a href="/?id=${filelist[i]}"> ${filelist[i]} </li>`
+            list = list + `<li><a href="/?id=${filelist[i]}"> ${filelist[i]} </a></li>`
             i++;
           }
           list = list + '</ul>';
@@ -42,7 +42,7 @@ var app = http.createServer(function(request,response){
               <meta charset="utf-8">
             </head>
             <body>
-              <h1><a href="index.html">WEB</a></h1>
+              <h1><a href="/">WEB</a></h1>
               ${list}
               <h2> ${title} </h2>
               <p> ${description} </p>
@@ -62,7 +62,7 @@ var app = http.createServer(function(request,response){
           var list = '<ul>';
           var i = 0;
           while( i < filelist.length ){
-            list = list + `<li><a href="/?id=${filelist[i]}"> ${filelist[i]} </li>`
+            list = list + `<li><a href="/?id=${filelist[i]}"> ${filelist[i]} </a></li>`
             i++;
           }
           list = list + '</ul>';
@@ -79,7 +79,7 @@ var app = http.createServer(function(request,response){
               <meta charset="utf-8">
             </head>
             <body>
-              <h1><a href="index.html">WEB</a></h1>
+              <h1><a href="/">WEB</a></h1>
               ${list}
               <h2>${title}</h2>
               <p>
