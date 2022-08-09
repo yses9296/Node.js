@@ -1,6 +1,7 @@
 var http = require('http');
 var fs = require('fs');
 var url = require('url');
+var qs = require('querystring');
 
 function templateHTML(title, list, body){
   return `
@@ -79,9 +80,9 @@ var app = http.createServer(function(request,response){
 
         var title = 'WEB - Create';        
         var list = listTemplate(filelist);
-        var desc = `
+        var body = `
           <h2>${title}</h2>
-          <form action="http://localhost:4000/process_create" method="POST">
+          <form action="http://localhost:4000/create_process" method="POST">
             <p>
                 <input type="text" name="title" placeholder="Title">
             </p>
@@ -93,12 +94,26 @@ var app = http.createServer(function(request,response){
             </p>
           </form>`;
 
-        var template = templateHTML(title, list, desc);
+        var template = templateHTML(title, list, body);
 
         response.writeHead(200);
         response.end(template);
       });
-    } ////pathName if-else
+    } //pathName if-else
+    else if(pathName === '/create_process'){
+      var body = '';
+      request.on('data', function(data){
+        body += data;
+      });
+      request.on('end', function(){
+        var post = qs.parse(body);
+        var titpe = post.title;
+        var desc = post.desc;
+      });
+      response.writeHead(200);
+      response.end('Succeed');
+
+    } //pathName if-else
     else {
 
       response.writeHead(404);
