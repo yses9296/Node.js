@@ -107,11 +107,15 @@ var app = http.createServer(function(request,response){
       });
       request.on('end', function(){
         var post = qs.parse(body);
-        var titpe = post.title;
+        var title = post.title;
         var desc = post.desc;
+
+        fs.writeFile(`./data/${title}`, desc, 'utf-8', function(err){
+          response.writeHead(302, {Location: `/?${title}`});
+          response.end();
+        });
       });
-      response.writeHead(200);
-      response.end('Succeed');
+
 
     } //pathName if-else
     else {
