@@ -4,19 +4,19 @@ var url = require('url');
 
 function templateHTML(title, list, body){
   return `
-  <!doctype html>
-  <html>
-  <head>
-    <title>WEB1 - ${title}</title>
-    <meta charset="utf-8">
-  </head>
-  <body>
-    <h1><a href="/">WEB</a></h1>
-    ${list}
-    ${body}
-  </body>
-  </html>
-`;
+    <!doctype html>
+    <html>
+    <head>
+      <title>WEB1 - ${title}</title>
+      <meta charset="utf-8">
+    </head>
+    <body>
+      <h1><a href="/">WEB</a></h1>
+      ${list}
+      ${body}
+    </body>
+    </html>
+  `;
 }
 
 function listTemplate(filelist){
@@ -35,8 +35,7 @@ var app = http.createServer(function(request,response){
     var _url = request.url;
     var queryData = url.parse(_url, true).query;
     var pathName = url.parse(_url, true).pathname;
-    
-
+  
     if(pathName === '/'){
       if(queryData.id === undefined){
 
@@ -45,16 +44,6 @@ var app = http.createServer(function(request,response){
 
           var title = 'Welcome';
           var description = 'Hello, Node.js';
-          
-          /*
-          var list = `
-          <ul>
-            <li><a href="/?id=HTML">HTML</a></li>
-            <li><a href="/?id=CSS">CSS</a></li>
-            <li><a href="/?id=JavaScript">JavaScript</a></li>
-          </ul>
-          `;
-          */
           
           var list = listTemplate(filelist);
 
@@ -89,18 +78,8 @@ var app = http.createServer(function(request,response){
       response.end('Not Found');
 
     } //pathName if-else
-
-
-    // if(_url == '/'){
-    //   title = 'Welcome';
-    //   // _url = '/index.html';
-    // }
-    // if(_url == '/favicon.ico'){
-    //   return response.writeHead(404);
-    // }
-    
-    // response.end(fs.readFileSync(__dirname + _url));
-
  
 });
+
+
 app.listen(3000);
