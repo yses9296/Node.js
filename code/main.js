@@ -13,6 +13,7 @@ function templateHTML(title, list, body){
     <body>
       <h1><a href="/">WEB</a></h1>
       ${list}
+      <a href="/create">Create</a>
       ${body}
     </body>
     </html>
@@ -72,6 +73,32 @@ var app = http.createServer(function(request,response){
       }//queryData.id if-else
 
     } //pathName if-else
+    else if(pathName === '/create'){
+      fs.readdir('./data', function(error, filelist){
+        console.log(filelist);
+
+        var title = 'WEB - Create';        
+        var list = listTemplate(filelist);
+        var desc = `
+          <h2>${title}</h2>
+          <form action="http://localhost:4000/process_create" method="POST">
+            <p>
+                <input type="text" name="title" placeholder="Title">
+            </p>
+            <p>
+                <textarea name="desc" id="desc" cols="30" rows="5" placeholder="Description"></textarea>
+            </p>
+            <p>
+                <input type="submit" value="Submit">
+            </p>
+          </form>`;
+
+        var template = templateHTML(title, list, desc);
+
+        response.writeHead(200);
+        response.end(template);
+      });
+    } ////pathName if-else
     else {
 
       response.writeHead(404);
@@ -82,4 +109,4 @@ var app = http.createServer(function(request,response){
 });
 
 
-app.listen(3000);
+app.listen(4000);
